@@ -8,14 +8,15 @@ def chareader filename
 	denum = [] #dependent claim's row
 	flag = 1
 	matrix.each_with_index do |row, index|
-		if row["type"] == "indclaim"
-			indnum = row["origin"].scan(/\d/).to_i
+		if row["type"] == "ind"
+			indnum = row["origin"].scan(/\d/)
 			indclaim = indeclaim(indnum)
-			indclaim.name = element_format(row["origin"].split("一种")[1])
+			indclaim.name = re_format(row["origin"].split("一种")[1])
 			flag=1 
-		elsif row["type"]== "declaim"
-			denum = row["origin"].scan(/\d/).map{|e| e.to_i}
-			declaim = declaim(denum[0], denum[1])
+		elsif row["type"].include?("de")
+			denum = row["origin"].scan(/\d/)
+			denum[1] ||= "*"
+			declaim(denum[0], denum[1])
 			flag=0
 		else
 			attrs = row["type"]
@@ -25,7 +26,7 @@ def chareader filename
 	end
 end
 
-def element_format element
+def re_format element
 	element.strip!
 	['。','，','；'].include?(element[-1]) ? element[0..-2] : element
 end
@@ -39,17 +40,17 @@ def declaim denum, acnum
 end
 
 def docone row, num
-	#TODO: test this 1
+	#TODO: test this one
 	d1 = DocOne.new(num)
 	for key in ["cha", "doc1", "reason1"]
-		d1.send("#{key}=", element_format(row[key]))
+		d1.send("#{key}=", re_format(row[key]))
 	end
 end
 
 def doctwo row, num
 	d2 = DocOne.new(num)
 	for i in ["cha", "doc1", "reason1", "doc2", "reason2"]
-		d2.send("#{key}=", element_format(value))
+		d2.send("#{key}=", re_format(value))
 	end
 end
 
