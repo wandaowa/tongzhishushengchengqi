@@ -1,5 +1,5 @@
 class IndClaim
-	attr_writer :independent, :name, :phara_one, :doc_diff, :doc_two, :phara_two, :comm
+	attr_writer :independent, :name, :pharaone, :docdiff, :doctwo, :pharatwo, :comm
 	
 	def initialize num
 		@num = num

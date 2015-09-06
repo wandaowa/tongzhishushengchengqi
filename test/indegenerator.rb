@@ -1,3 +1,5 @@
+#该文件已经废了
+
 require './charatreader.rb'
 	def line_format linek
 		['。','，','；'].include?(linek[-1]) ? linek[0..-2] : linek

@@ -1,5 +1,5 @@
 class DocOne
-	attr_writer :cha, :doc1, :reason1
+	attr_writer :cha, :docone, :reasonone
 
 	#TODO : phara
 	
