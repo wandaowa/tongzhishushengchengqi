@@ -1,9 +1,11 @@
-class IndClaim
-	attr_writer :independent, :name, :pharaone, :docdiff, :doctwo, :pharatwo, :comm
+require './docone.rb'
+
+class IndClaim < DocOne
+	attr_accessor :independent, :name, :docone, :pharaone, :docdiff, :doctwo, :pharatwo, :comm
 	
 	def initialize num
 		@num = num
-		@doc_one = []
+		@docone = []
 	end
 
 	def op
@@ -31,10 +33,10 @@ class IndClaim
 	end
 end
 
-c1=Claim.new(1)
-c1.independent = true
-c1.doc_one = "得到结论"
+# c1=Claim.new(1)
+# c1.independent = true
+# c1.doc_one = "得到结论"
 
-puts c1.independent
-puts c1.doc_one
-puts c1.out
+# puts c1.independent
+# puts c1.doc_one
+# puts c1.out
